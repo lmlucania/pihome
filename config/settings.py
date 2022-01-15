@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.accounts'
+    'apps.accounts',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +83,8 @@ DATABASES = {
         'NAME': env.get_value('DB_NAME'),
         'USER': env.get_value('DB_USER'),
         'PASSWORD': env.get_value('DB_PASSWORD'),
+        'HOST': env.get_value('DB_HOST'),
+        'PORT': env.get_value('DB_PORT'),
     }
 }
 
@@ -131,3 +133,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env.get_value('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = env.get_value('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = env.get_value('EMAIL_HOST_USER')
+EMAIL_PORT = env.get_value('EMAIL_PORT')
+EMAIL_USE_TLS = True
