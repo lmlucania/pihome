@@ -5,6 +5,7 @@ class Measurement(models.Model):
     class Type(models.IntegerChoices):
         TEMPERATURE = 1, '温度'
         HUMIDITY = 2, '湿度'
+        PRESSURE = 3, '気圧'
 
     type = models.SmallIntegerField(choices=Type.choices, verbose_name='種別')
     value = models.FloatField(verbose_name='計測内容')
