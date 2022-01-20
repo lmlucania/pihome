@@ -1,11 +1,19 @@
 from django.contrib.auth import views
 from apps.accounts.form import LoginForm, PasswordResetForm, SetPasswordForm
 from django.http import HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 
 class LoginView(views.LoginView):
     form_class = LoginForm
+    redirect_authenticated_user = True
+
+    def get_redirect_url(self):
+        url = super().get_redirect_url()
+        if url == '':
+            url = reverse_lazy('sensor:dashboard')
+
+        return url
 
 
 class LogoutView(views.LogoutView):
