@@ -22,13 +22,12 @@ class DashBoardView(LoginRequiredMixin, TemplateView):
         return context
 
     def _create_graph(self, x, y):
-        plt.rcParams["font.family"] = "Hiragino sans"
         plt.switch_backend("AGG")
         plt.figure(figsize=(10, 5))
         plt.xticks(rotation=30)
         plt.bar(x, y)
-        plt.title('湿度の推移')
-        plt.ylabel('湿度（％）')
+        plt.title('Humidity Graph')
+        plt.ylabel('Humidity(%)')
         plt.tight_layout()
         buffer = BytesIO()
         plt.savefig(buffer, format="png")
